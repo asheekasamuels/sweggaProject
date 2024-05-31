@@ -1,36 +1,28 @@
-// Example function to fetch and display products
-function fetchAndDisplayProducts() {
-    // Fetch products from server using fetch API or other methods
-    // Example data
-    const products = [
-        { id: 1, name: "Product 1", price: 50 },
-        { id: 2, name: "Product 2", price: 60 },
-        { id: 3, name: "Product 3", price: 70 },
-    ];
+let fPrice = document.getElementById('fmalePrice')
+let fQnty = document.getElementById('fmaleQnty')
+let fTotal = document.getElementById('fmaleTotal')
 
-    const mainContent = document.getElementById("main-content");
-    
-    // Clear existing content
-    mainContent.innerHTML = "";
+let mPrice = document.getElementById('malePrice')
+let mQnty = document.getElementById('maleQnty')
+let mTotal = document.getElementById('maleTotal')
 
-    // Loop through products and create HTML elements to display them
-    products.forEach(product => {
-        const productElement = document.createElement("div");
-        productElement.classList.add("product");
-        productElement.innerHTML = `
-            <h3>${product.name}</h3>
-            <p>Price: $${product.price}</p>
-            <button onclick="addToCart(${product.id})">Add to Cart</button>
-        `;
-        mainContent.appendChild(productElement);
-    });
+let calc = document.getElementById('calculate')
+let Total = document.getElementById('finalTotal')
+
+
+calc.addEventListener('click', (event)=>{
+    event.preventDefault()
+    calculation()
+})
+function calculation() {
+   let total1 = eval(fPrice.innerText * fQnty.value)
+   let total2 = eval(mPrice.innerText * mQnty.value)
+   let total3 = total1 + total2
+
+   fTotal.innerText = total1
+   mTotal.innerText = total2
+   Total.innerText = total3.toFixed(2)
+   
+   
+   
 }
-
-// Function to add product to cart
-function addToCart(productId) {
-    // Logic to add product to cart
-    console.log("Product added to cart:", productId);
-}
-
-// Fetch and display products when page loads
-window.onload = fetchAndDisplayProducts;
